@@ -29,7 +29,7 @@ function NewTweetPopover({ handleClose }) {
   const [error, setError] = useState(undefined);
 
   // Context
-  const {username} = useUser();
+  const { username } = useUser();
 
   // Variables
   const characterCount = tweet.length;
