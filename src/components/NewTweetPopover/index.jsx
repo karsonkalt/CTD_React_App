@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import ReactLoading from 'react-loading';
-import { Button, Dialog } from '../../ui_components';
-import { useUser } from '../../contexts/useUser';
+import { Button, Dialog } from '../../ui/components';
+import { useUser } from '../../contexts/UserContext';
 
 const useStyles = createUseStyles({
   tweetContainer: {

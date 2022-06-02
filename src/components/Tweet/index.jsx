@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Button } from '../../ui_components';
+import { Button } from '../../ui/components';
 import PropTypes from 'prop-types';
 
 const useStyles = createUseStyles({

@@ -12,7 +12,7 @@ import { LoginPopover } from './components/LoginPopover';
 import { AppBar } from './components/AppBar';
 import { NewTweetPopover } from './components/NewTweetPopover';
 import { Edit2 } from 'react-feather';
-import { Button, IconButton } from './ui_components';
+import { Button, IconButton } from './ui/components';
 import { UserContextProvider } from './contexts/UserContext';
 
 const useStyles = createUseStyles({
