@@ -1,14 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 import { PropTypes } from 'prop-types';
-
-/*  NOTE:
-    This pattern is called an enum. This way we are never using a string
-    to set the theme. Object.freeze ensures you can not add properties */
-export const Theme = Object.freeze({
-  light: 'light',
-  dark: 'dark',
-  // Could add more themes at a later date
-});
+import { Theme } from '../ui/themes';
 
 const ThemeContext = createContext();
 
