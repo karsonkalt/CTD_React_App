@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
 
 const Dialog = ({ children, handleClose, title, maxWidth = 400 }) => {
   const { theme } = useTheme();
-  const styles = useStyles({theme, maxWidth});
+  const styles = useStyles({ theme, maxWidth });
   return (
     <div className={styles.background}>
       <div className={styles.dialog}>

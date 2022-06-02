@@ -10,4 +10,3 @@ export const Theme = {
   dark: darkTheme,
   // Could add more themes at a later date
 };
-
