@@ -24,16 +24,16 @@ const useStyles = createUseStyles({
 
 function NewTweetPopover({ handleClose }) {
   const { username } = useUser();
-  
+
   const [tweet, setTweet] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
-  
+
   const characterCount = tweet.length;
   const MAX_CHARACTERS = 120; // Constant convention is all caps
   const WARNING_CHARACTERS = 20; // Constant convention is all caps
   const pastWarningCharacters =
-  characterCount >= MAX_CHARACTERS - WARNING_CHARACTERS;
+    characterCount >= MAX_CHARACTERS - WARNING_CHARACTERS;
   const styles = useStyles(pastWarningCharacters);
 
   const handlePostClick = async () => {
