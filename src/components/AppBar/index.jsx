@@ -5,6 +5,7 @@ import { Button, IconButton } from '../../ui/components';
 import { Edit2 } from 'react-feather';
 import { LoginPopover, NewTweetPopover } from '../';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   root: {
@@ -24,6 +25,10 @@ const useStyles = createUseStyles({
   spacer: {
     height: 75,
   },
+  title: {
+    color: 'white',
+    textDecoration: 'none',
+  }
 });
 
 function AppBar({ title }) {
@@ -44,7 +49,9 @@ function AppBar({ title }) {
   return (
     <>
       <div className={styles.root}>
-        <span className={styles.title}>{title}</span>
+        <Link to="/">
+          <span className={styles.title}>{title}</span>
+        </Link>
         <div style={{ display: 'flex' }}>
           {!username && <Button onClick={handleOpenLoginPopover}>Login</Button>}
           {username && (
