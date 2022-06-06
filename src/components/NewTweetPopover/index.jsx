@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
 });
 
 function NewTweetPopover({ handleClose }) {
-  const { username } = useUser();
+  const { user } = useUser();
 
   const [tweet, setTweet] = useState('');
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ function NewTweetPopover({ handleClose }) {
         },
         method: 'POST',
         body: JSON.stringify({
-          displayName: username,
+          displayName: user.username,
           content: tweet,
         }),
       });
