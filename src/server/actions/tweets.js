@@ -33,8 +33,8 @@ function getTweetsByUser(userId) {
 }
 
 function addTweet(text, authorId) {
-  const index = db.getData('/tweets').length
-  const id = index + 1
+  const index = db.getData('/tweets').length;
+  const id = index + 1;
   const newTweet = {
     id,
     text,
@@ -43,7 +43,7 @@ function addTweet(text, authorId) {
     authorId,
   };
   db.push(`/tweets[${index}]`, newTweet);
-  return getTweet(id)
+  return getTweet(id);
 }
 
 module.exports = {

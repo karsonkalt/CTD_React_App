@@ -16,8 +16,8 @@ function getUser(userId) {
 
 function createUser(username, displayName, location, bio) {
   if (usernameTaken(username)) throw new Error('Username taken');
-  const index = db.getData('/users').length
-  const id = index + 1
+  const index = db.getData('/users').length;
+  const id = index + 1;
   const newUser = {
     id,
     username: `@${username}`,
