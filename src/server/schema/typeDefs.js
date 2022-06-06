@@ -34,9 +34,19 @@ const typeDefs = gql`
     login(username: String!): User
   }
 
+  # Inputs
+  # Can have a default value with = after
+  input CreateUserInput {
+    username: String!
+    displayName: String!
+    location: Location = US
+    bio: String = ""
+  }
+
   # Mutations
   type Mutation {
     createTweet(text: String!, authorId: ID!): Tweet!
+    createUser(input: CreateUserInput!): User!
   }
 `;
 

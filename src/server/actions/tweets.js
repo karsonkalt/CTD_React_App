@@ -1,5 +1,7 @@
 const { db } = require('../db');
+const _ = require('lodash');
 
+// TODO use lodash
 function getTweets() {
   const tweets = db.getData('/tweets');
   const users = db.getData('/users');
@@ -31,16 +33,17 @@ function getTweetsByUser(userId) {
 }
 
 function addTweet(text, authorId) {
-  const index = db.getData('/tweets').length;
+  const index = db.getData('/tweets').length
+  const id = index + 1
   const newTweet = {
-    id: index,
+    id,
     text,
     createdAt: new Date().toISOString(),
     promoted: false,
     authorId,
   };
   db.push(`/tweets[${index}]`, newTweet);
-  return newTweet;
+  return getTweet(id)
 }
 
 module.exports = {

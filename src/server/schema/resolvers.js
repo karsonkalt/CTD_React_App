@@ -4,26 +4,28 @@ const {
   getTweetsByUser,
   addTweet,
 } = require('../actions/tweets');
-const { getUsers, getUser } = require('../actions/users');
+const { getUsers, getUser, createUser } = require('../actions/users');
 const { login } = require('../actions/sessions');
 
 const resolvers = {
   Query: {
     // Tweets
     tweets: () => getTweets(),
-    tweetsByUser: (parent, args) => getTweetsByUser(args.id),
-    tweet: (parent, args) => getTweet(args.id),
+    tweetsByUser: (parent, { id }) => getTweetsByUser(id),
+    tweet: (parent, { id }) => getTweet(id),
 
     // Users
     users: () => getUsers(),
-    user: (parent, args) => getUser(args.id),
+    user: (parent, { id }) => getUser(id),
 
     // Sessions
-    login: (parent, args) => login(args.username),
+    login: (parent, { username }) => login(username),
   },
 
   Mutation: {
-    createTweet: (parent, args) => addTweet(args.text, args.authorId),
+    createTweet: (parent, { text, authorId }) => addTweet(text, authorId),
+    createUser: (parent, { input }) =>
+      createUser(input.username, input.displayName, input.location, input.bio),
   },
 };
 

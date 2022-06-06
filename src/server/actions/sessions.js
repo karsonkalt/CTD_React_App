@@ -1,5 +1,6 @@
 const { db } = require('../db');
 
+// TODO use lodash
 function login(username) {
   const user = db
     .getData('/users')
