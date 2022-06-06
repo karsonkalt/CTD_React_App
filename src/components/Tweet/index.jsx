@@ -11,6 +11,7 @@ import { createUseStyles } from 'react-jss';
 import { Button } from '../../ui/components';
 import PropTypes from 'prop-types';
 import { useTheme } from '../../contexts/ThemeContext';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   root: {
@@ -28,8 +29,11 @@ const useStyles = createUseStyles({
     boxShadow: 'rgb(210 210 210) 0px 3px 6px 0px',
     width: '100%',
   },
-  username: {
+  displayName: {
     fontWeight: 'bold',
+  },
+  username: {
+    fontWeight: 'normal',
   },
   tweetBody: {
     fontSize: 14,
@@ -43,7 +47,7 @@ const useStyles = createUseStyles({
   },
 });
 
-function Tweet({ username, content, promoted = false }) {
+function Tweet({ id, text, createdAt, promoted, author }) {
   const { theme } = useTheme();
   const styles = useStyles({ theme, promoted });
 
@@ -53,9 +57,12 @@ function Tweet({ username, content, promoted = false }) {
   const handleRemoveLike = () => setLikes(likes - 1);
 
   return (
-    <div className={styles.root}>
-      <span className={styles.username}>{username}</span>
-      <p className={styles.tweetBody}>{content}</p>
+    <div className={styles.root} id={id}>
+      <Link to={`/user/${author.id}`}>
+        <div className={styles.displayName}>{author.displayName}</div>
+        <div className={styles.username}>{author.username}</div>
+      </Link>
+      <p className={styles.tweetBody}>{text}</p>
       {likes === 0 && <Button onClick={handleAddLike}>Like</Button>}
       {likes > 0 && <Button onClick={handleRemoveLike}>Remove Like</Button>}
       <span className={styles.likes}>{likes} Likes</span>
@@ -64,9 +71,15 @@ function Tweet({ username, content, promoted = false }) {
 }
 
 Tweet.propTypes = {
-  username: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
   promoted: PropTypes.bool,
+  author: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+  }),
 };
 
 export { Tweet };
