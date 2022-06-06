@@ -10,7 +10,14 @@ function getUser(userId) {
   const user = _.find(db.getData('/users'), { id: Number(userId) });
   return {
     ...user,
-    tweets: _.filter(db.getData('/tweets'), { authorId: Number(user.id) }),
+    tweets: _.filter(db.getData('/tweets'), { authorId: Number(user.id) }).map(
+      (tweet) => {
+        return {
+          ...tweet,
+          author: user,
+        };
+      }
+    ),
   };
 }
 
