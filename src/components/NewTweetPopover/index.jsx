@@ -59,15 +59,14 @@ function NewTweetPopover({ handleClose }) {
     }
     setLoading(true);
     try {
-      const response = await submitTweet()
-      console.log(response)
-      setLoading(false)
+      const response = await submitTweet();
+      console.log(response);
+      setLoading(false);
       handleClose();
     } catch (error) {
       setLoading(false);
       setError(error);
     }
-
   };
   const handleTweetChange = (event) => {
     if (event.target.value.length <= MAX_CHARACTERS)
