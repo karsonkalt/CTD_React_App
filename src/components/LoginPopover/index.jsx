@@ -18,7 +18,7 @@ function LoginPopover({ handleClose }) {
   const { setUser } = useUser();
   const navigate = useNavigate();
   const [text, setText] = useState('');
-  const [login, { data, loading, error }] = useLazyQuery(LOGIN, {
+  const [login, { data, error }] = useLazyQuery(LOGIN, {
     variables: { username: text },
   });
 

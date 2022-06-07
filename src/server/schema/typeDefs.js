@@ -25,6 +25,8 @@ const typeDefs = gql`
   }
 
   # Queries
+  # Give me something from the database
+  # Similar to HTTP GET
   type Query {
     tweets: [Tweet!]!
     tweetsByUser(id: ID!): [Tweet!]!
@@ -44,6 +46,8 @@ const typeDefs = gql`
   }
 
   # Mutations
+  # Change the Database somehow
+  # Similar to HTTP POST PATCH DELETE
   type Mutation {
     createTweet(text: String!, authorId: ID!): Tweet!
     createUser(input: CreateUserInput!): User!

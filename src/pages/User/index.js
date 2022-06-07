@@ -30,7 +30,7 @@ const GET_USER = gql`
 
 function User() {
   const { user } = useUser();
-  let { userId } = useParams();
+  const { userId } = useParams();
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { userId },
   });

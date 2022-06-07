@@ -40,7 +40,7 @@ function addTweet(text, authorId) {
     text,
     createdAt: new Date().toISOString(),
     promoted: false,
-    authorId,
+    authorId: Number(authorId),
   };
   db.push(`/tweets[${index}]`, newTweet);
   return getTweet(id);
