@@ -1,31 +1,26 @@
-const {
-  getTweets,
-  getTweet,
-  getTweetsByUser,
-  addTweet,
-} = require('../daos/tweets');
-const { getUsers, getUser, createUser } = require('../daos/users');
-const { login } = require('../daos/sessions');
+const { tweet } = require('../daos/tweet');
+const { user } = require('../daos/user');
+const { session } = require('../daos/session');
 
 const resolvers = {
   Query: {
-    // Tweets
-    tweets: () => getTweets(),
-    tweetsByUser: (parent, { id }) => getTweetsByUser(id),
-    tweet: (parent, { id }) => getTweet(id),
+    // Tweet
+    tweets: () => tweet.getTweets(),
+    tweetsByUser: (parent, { id }) => tweet.getTweetsByUser(id),
+    tweet: (parent, { id }) => tweet.getTweet(id),
 
-    // Users
-    users: () => getUsers(),
-    user: (parent, { id }) => getUser(id),
+    // User
+    users: () => user.getUsers(),
+    user: (parent, { id }) => user.getUser(id),
 
-    // Sessions
-    login: (parent, { username }) => login(username),
+    // Session
+    login: (parent, { username }) => session.login(username),
   },
 
   Mutation: {
-    createTweet: (parent, { text, authorId }) => addTweet(text, authorId),
+    createTweet: (parent, { text, authorId }) => tweet.addTweet(text, authorId),
     createUser: (parent, { input }) =>
-      createUser(input.username, input.displayName, input.location, input.bio),
+      user.createUser(input.username, input.displayName, input.location, input.bio),
   },
 };
 
