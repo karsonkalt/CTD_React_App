@@ -3,9 +3,9 @@ const {
   getTweet,
   getTweetsByUser,
   addTweet,
-} = require('../actions/tweets');
-const { getUsers, getUser, createUser } = require('../actions/users');
-const { login } = require('../actions/sessions');
+} = require('../daos/tweets');
+const { getUsers, getUser, createUser } = require('../daos/users');
+const { login } = require('../daos/sessions');
 
 const resolvers = {
   Query: {
