@@ -20,7 +20,12 @@ const resolvers = {
   Mutation: {
     createTweet: (parent, { text, authorId }) => tweet.addTweet(text, authorId),
     createUser: (parent, { input }) =>
-      user.createUser(input.username, input.displayName, input.location, input.bio),
+      user.createUser(
+        input.username,
+        input.displayName,
+        input.location,
+        input.bio
+      ),
   },
 };
 
