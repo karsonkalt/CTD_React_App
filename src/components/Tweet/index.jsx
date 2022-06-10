@@ -12,7 +12,7 @@ import { IconButton } from '../../ui/components';
 import { ThumbsUp } from 'react-feather';
 import PropTypes from 'prop-types';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Link } from 'react-router-dom';
+import { Avatar } from './Avatar';
 
 const useStyles = createUseStyles({
   root: {
@@ -70,10 +70,7 @@ function Tweet({ id, text, createdAt, promoted, author }) {
 
   return (
     <div className={styles.root}>
-      <Link to={`/user/${author.id}`}>
-        <div className={styles.username}>{author.displayName}</div>
-        <div className={styles.username}>{author.username}</div>
-      </Link>
+      <Avatar {...author}/>
       <p className={styles.tweetBody}>{text}</p>
       {likes === 0 && (
         <IconButton variant="round" onClick={handleAddLike}>
