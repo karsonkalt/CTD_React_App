@@ -8,7 +8,8 @@
 
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Button } from '../../ui/components';
+import { IconButton } from '../../ui/components';
+import { ThumbsUp } from 'react-feather';
 import PropTypes from 'prop-types';
 import { useTheme } from '../../contexts/ThemeContext';
 import { Link } from 'react-router-dom';
@@ -45,6 +46,17 @@ const useStyles = createUseStyles({
     color: (props) => `3px solid ${props.theme.translucent[10]}`,
     fontSize: 12,
   },
+  likedButton: {
+    color: (props) => props.theme.primary.dark, // applying to the outline
+    fill: (props) => props.theme.primary.main,
+    stroke: 'broken',
+    animation: '$grow .75s ease',
+  },
+  '@keyframes grow': {
+    '0%': { transform: 'scale(1)' },
+    '50%': { transform: 'scale(1.3)' },
+    '100%': { transform: 'scale(1)' },
+  },
 });
 
 function Tweet({ id, text, createdAt, promoted, author }) {
@@ -57,14 +69,19 @@ function Tweet({ id, text, createdAt, promoted, author }) {
   const handleRemoveLike = () => setLikes(likes - 1);
 
   return (
-    <div className={styles.root} id={id}>
-      <Link to={`/user/${author.id}`}>
-        <div className={styles.displayName}>{author.displayName}</div>
-        <div className={styles.username}>{author.username}</div>
-      </Link>
+    <div className={styles.root}>
+      <span className={styles.username}>{author.username}</span>
       <p className={styles.tweetBody}>{text}</p>
-      {likes === 0 && <Button onClick={handleAddLike}>Like</Button>}
-      {likes > 0 && <Button onClick={handleRemoveLike}>Remove Like</Button>}
+      {likes === 0 && (
+        <IconButton variant="round" onClick={handleAddLike}>
+          <ThumbsUp />
+        </IconButton>
+      )}
+      {likes > 0 && (
+        <IconButton variant="round" onClick={handleRemoveLike}>
+          <ThumbsUp className={styles.likedButton} />
+        </IconButton>
+      )}
       <span className={styles.likes}>{likes} Likes</span>
     </div>
   );
