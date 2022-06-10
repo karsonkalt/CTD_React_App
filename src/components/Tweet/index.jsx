@@ -70,7 +70,10 @@ function Tweet({ id, text, createdAt, promoted, author }) {
 
   return (
     <div className={styles.root}>
-      <span className={styles.username}>{author.username}</span>
+      <Link to={`/user/${author.id}`}>
+        <div className={styles.username}>{author.displayName}</div>
+        <div className={styles.username}>{author.username}</div>
+      </Link>
       <p className={styles.tweetBody}>{text}</p>
       {likes === 0 && (
         <IconButton variant="round" onClick={handleAddLike}>
