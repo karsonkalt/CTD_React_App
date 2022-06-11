@@ -2,15 +2,18 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../../contexts/ThemeContext.jsx';
+import { randomColor } from '../../../util/randomColor.js';
 
 const useStyles = createUseStyles({
   root: {
     display: 'inline-flex',
+    textDecoration: 'none',
   },
   avatarCircle: {
     width: 40,
     height: 40,
-    backgroundColor: (color) => color,
+    backgroundColor: ({ color }) => color,
     marginRight: 10,
     borderRadius: 20,
     display: 'flex',
@@ -18,40 +21,47 @@ const useStyles = createUseStyles({
     alignItems: 'center',
     fontSize: 20,
     color: 'white',
+    boxSizing: 'border-box',
+    '&:hover': {
+      border: ({ theme }) => `2px solid ${theme.primary.main}`,
+      cursor: 'pointer',
+    },
   },
   nameContainer: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    textDecoration: 'none',
-    color: '#383838',
+    justifyContent: 'center',
+    color: ({ theme }) => theme.translucent[60],
   },
   displayName: {
     fontSize: 15,
     fontWeight: 500,
+    marginBottom: 3,
+    color: ({ theme }) => theme.translucent[90],
     '&:hover': {
       textDecoration: 'underline',
     },
   },
   username: {
-    fontSize: 13, 
+    fontSize: 13,
     '&:hover': {
       textDecoration: 'underline',
     },
   },
 });
 
-function Avatar({ id, username, displayName, color = '#d2d2d2' }) {
-  const styles = useStyles(color);
+function Avatar({ id, username, displayName, color = randomColor() }) {
+  const { theme } = useTheme();
+  const styles = useStyles({ theme, color });
   const avatarLetter = displayName[0];
   return (
-    <div className={styles.root}>
+    <Link className={styles.root} to={`/user/${id}`}>
       <div className={styles.avatarCircle}>{avatarLetter}</div>
-      <Link className={styles.nameContainer} to={`/user/${id}`}>
+      <div className={styles.nameContainer}>
         <div className={styles.displayName}>{displayName}</div>
         <div className={styles.username}>{username}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 
