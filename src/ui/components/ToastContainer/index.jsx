@@ -1,11 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import PropTypes from 'prop-types';
 import { useToast } from '../../../contexts/ToastContext';
 import { Toast } from '../Toast';
-
-// const PERSISTED_DURATION = 5000;
-// const ANIMATION_DURATION = 750;
 
 const useStyles = createUseStyles({
   root: {
@@ -18,22 +14,17 @@ const useStyles = createUseStyles({
   },
 });
 
-function ToastContainer({}) {
+function ToastContainer() {
   const styles = useStyles();
   const { toasts } = useToast();
 
-  // useEffect(() => {
-  //   if (!persisted) {
-  //     setTimeout(() => {
-  //       setOpen(false);
-  //     }, PERSISTED_DURATION);
-  //   }
-  // }, []);
+  // Do not show the ToastContainer if there are no toasts
+  if (!toasts.length) return <></>;
 
   return (
     <div className={styles.root}>
       {toasts.map((toast) => (
-        <Toast id={toast.id}>{toast.text}</Toast>
+        <Toast {...toast} />
       ))}
     </div>
   );

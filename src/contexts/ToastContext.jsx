@@ -7,15 +7,13 @@ const ToastContext = createContext();
 const ToastContextProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  console.log('toasts', toasts);
-
-  const createToast = (text) => {
+  const createToast = (text, persisted = false) => {
     const newToast = {
       id: uuid(),
       text: text,
+      persisted: persisted
     };
     setToasts((prev) => [...prev, newToast]);
-    // setToasts([...toasts, text]) exact same syntax
     return newToast;
   };
 

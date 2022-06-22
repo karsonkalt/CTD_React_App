@@ -36,7 +36,7 @@ const useStyles = createUseStyles({
   },
 });
 
-function Toast({ id, children, persisted = false }) {
+function Toast({ id, text, persisted }) {
   const { theme } = useTheme();
   const styles = useStyles({ theme });
   const { removeToast } = useToast();
@@ -54,13 +54,13 @@ function Toast({ id, children, persisted = false }) {
       <IconButton variant="round" onClick={() => removeToast(id)}>
         <X size={15} />
       </IconButton>
-      <span className={styles.text}>{children}</span>
+      <span className={styles.text}>{text}</span>
     </div>
   );
 }
 
 Toast.propTypes = {
-  children: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   persisted: PropTypes.bool,
   id: PropTypes.number,
 };

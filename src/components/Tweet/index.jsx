@@ -109,13 +109,17 @@ function Tweet({ id, text, createdAt, promoted, author, likes }) {
 
   const handleToggleLike = () => setLikes((prev) => !prev);
   const handleToggleBookmark = () => {
-    if (!bookmarked) createToast('Bookmarked this tweet');
+    if (!bookmarked)
+      createToast(
+        'Bookmarked this tweet. This Toast is persisted until closed.',
+        true
+      );
     setBookmarked((prev) => !prev);
   };
 
   const handleCopyTweetClick = async () => {
     await navigator.clipboard.writeText(text);
-    alert('Copied the text: ' + text);
+    createToast('Tweet copied to clipboard');
   };
 
   return (
