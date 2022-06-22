@@ -22,7 +22,7 @@ function LoginPopover({ handleClose }) {
   const [login, { data, error }] = useLazyQuery(LOGIN, {
     variables: { username: text },
   });
-  const {createToast} = useToast()
+  const { createToast } = useToast();
 
   const handleTextChange = (event) => {
     setText(event.target.value);
