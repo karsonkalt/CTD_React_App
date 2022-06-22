@@ -16,7 +16,8 @@ import { Avatar } from './Avatar';
 import { useUser } from '../../contexts/UserContext';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
-import { Toast } from '../../ui/components/Toast';
+import { useToast } from '../../contexts/ToastContext';
+
 const useStyles = createUseStyles({
   root: {
     border: ({ promoted, theme }) =>
@@ -101,12 +102,16 @@ function Tweet({ id, text, createdAt, promoted, author, likes }) {
   const { theme } = useTheme();
   const styles = useStyles({ theme, promoted, liked, bookmarked });
   const { user } = useUser();
+  const { createToast } = useToast();
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo('en-US').format(new Date(createdAt));
 
   const handleToggleLike = () => setLikes((prev) => !prev);
-  const handleToggleBookmark = () => setBookmarked((prev) => !prev);
+  const handleToggleBookmark = () => {
+    if (!bookmarked) createToast('Bookmarked this tweet');
+    setBookmarked((prev) => !prev);
+  };
 
   const handleCopyTweetClick = async () => {
     await navigator.clipboard.writeText(text);
@@ -152,7 +157,6 @@ function Tweet({ id, text, createdAt, promoted, author, likes }) {
           </MenuButton>
         </div>
       </div>
-      {bookmarked && <Toast>Bookmarked {author.username}'s tweet</Toast>}
     </div>
   );
 }
