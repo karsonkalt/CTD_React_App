@@ -39,6 +39,38 @@
             "promoted": false,
             "authorId": 1,
             "likes": 10952
+        },
+        {
+            "id": 6,
+            "text": "when did the dollar lose global reserve currency status?",
+            "createdAt": "2022-06-23T22:58:39.493Z",
+            "promoted": false,
+            "authorId": 3,
+            "likes": 506
+        },
+        {
+            "id": 7,
+            "text": "If ANYONE NEEDS 280 Characters & New Emoji …ITS MOI 💃🏻?",
+            "createdAt": "2022-06-23T22:58:55.938Z",
+            "promoted": false,
+            "authorId": 1,
+            "likes": 10645
+        },
+        {
+            "id": 8,
+            "text": "Photo shoot Sun for cover",
+            "createdAt": "2022-06-23T22:59:09.446Z",
+            "promoted": false,
+            "authorId": 1,
+            "likes": 10952
+        },
+        {
+            "id": 9,
+            "text": "IM NOT YELLING… IM CHER",
+            "createdAt": "2022-06-23T22:59:19.353Z",
+            "promoted": true,
+            "authorId": 1,
+            "likes": 2156
         }
     ],
     "users": [
