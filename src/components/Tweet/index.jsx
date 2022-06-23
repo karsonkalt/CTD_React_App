@@ -104,7 +104,7 @@ function Tweet({ id, text, createdAt, promoted, author, likes }) {
   const { user } = useUser();
   const { createToast } = useToast();
 
-  TimeAgo.addDefaultLocale(en);
+  TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo('en-US').format(new Date(createdAt));
 
   const handleToggleLike = () => setLikes((prev) => !prev);
