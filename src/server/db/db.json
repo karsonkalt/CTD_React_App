@@ -38,13 +38,13 @@
             "createdAt": "2022-01-01T00:00:00.000Z",
             "promoted": false,
             "authorId": 1,
-            "likes": 10952
+            "likes": 50632
         },
         {
             "id": 6,
             "text": "when did the dollar lose global reserve currency status?",
             "createdAt": "2022-06-23T22:58:39.493Z",
-            "promoted": false,
+            "promoted": true,
             "authorId": 3,
             "likes": 506
         },
