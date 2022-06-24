@@ -106,7 +106,10 @@ function Tweet({ id, text, createdAt, promoted, author, likes }) {
   const { user } = useUser();
   const { createToast } = useToast();
 
-  const timeAgo = useMemo(() => new TimeAgo('en-US').format(new Date(createdAt)),[createdAt]);
+  const timeAgo = useMemo(
+    () => new TimeAgo('en-US').format(new Date(createdAt)),
+    [createdAt]
+  );
 
   const handleToggleLike = () => setLikes((prev) => !prev);
   const handleToggleBookmark = () => {
